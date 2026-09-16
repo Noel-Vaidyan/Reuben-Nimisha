@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Style+Script&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fraunces:opsz,wght@9..144,900&family=Jost:wght@300;400;500&family=Style+Script&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -69,13 +69,34 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        cursor: pointer;
         transition:
-          opacity 1.1s ease 2.9s,
-          visibility 0s 4s;
+          opacity 1.1s ease,
+          visibility 0s 1.1s;
       }
       #intro.gone {
         opacity: 0;
         visibility: hidden;
+      }
+      .intro-tap {
+        font-size: 0.66rem;
+        letter-spacing: 0.4em;
+        padding-left: 0.4em;
+        margin-top: 2.6rem;
+        opacity: 0;
+        color: var(--gold-soft);
+        animation:
+          fadeUp 1.2s ease 2.2s forwards,
+          tapPulse 2.4s ease-in-out 3.4s infinite;
+      }
+      @keyframes tapPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
       }
       .intro-inner {
         color: #f3efe4;
@@ -157,7 +178,9 @@
           background 0.5s,
           box-shadow 0.5s;
         opacity: 0;
-        animation: navIn 1s ease 3.6s forwards;
+      }
+      body.opened nav {
+        animation: navIn 1s ease 0.5s forwards;
       }
       @keyframes navIn {
         to {
@@ -236,7 +259,9 @@
         z-index: 2;
         opacity: 0;
         transform: translateY(30px);
-        animation: heroIn 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 3.9s forwards;
+      }
+      body.opened .hero-inner {
+        animation: heroIn 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s forwards;
       }
       @keyframes heroIn {
         to {
@@ -273,30 +298,6 @@
         letter-spacing: 0.06em;
         margin-top: 0.7rem;
       }
-      .scroll-cue {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.6rem;
-        opacity: 0;
-        animation: heroIn 1.4s ease 4.6s forwards;
-      }
-      .scroll-cue span {
-        font-size: 0.62rem;
-        letter-spacing: 0.32em;
-        color: #fdf8ef;
-      }
-      .scroll-cue i {
-        width: 1px;
-        height: 46px;
-        background: linear-gradient(#fdf8ef, transparent);
-        animation: pulse 2.4s ease-in-out infinite;
-      }
       @keyframes pulse {
         0%,
         100% {
@@ -331,8 +332,8 @@
         min-width: 64px;
       }
       .count-row b {
-        font-family: "Cormorant Garamond";
-        font-weight: 300;
+        font-family: "Fraunces";
+        font-weight: 900;
         font-size: clamp(2.6rem, 7vw, 4.4rem);
         display: block;
         line-height: 1;
@@ -474,6 +475,145 @@
         font-size: 0.95rem;
         color: var(--bark-soft);
         line-height: 1.6;
+      }
+      .dirlink {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 1rem;
+        font-family: "Jost";
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.3s,
+          border-color 0.3s;
+      }
+      .dirlink:hover {
+        color: var(--rose);
+        border-color: var(--rose);
+      }
+      .dirlink::after {
+        content: "\2197";
+        font-size: 0.9em;
+      }
+
+      /* gift registry */
+      .registry {
+        background: var(--cream-deep);
+      }
+      .reg-card {
+        background: var(--cream);
+        border: 1px solid var(--line);
+        max-width: 620px;
+        margin: 0 auto;
+        padding: clamp(3rem, 6vw, 4.4rem) clamp(1.8rem, 5vw, 3.4rem);
+        text-align: center;
+      }
+      .reg-card .ico {
+        font-family: "Style Script";
+        font-size: 2.6rem;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .reg-card h2 {
+        font-size: clamp(2rem, 5vw, 2.9rem);
+        margin-bottom: 1.1rem;
+      }
+      .reg-note {
+        font-family: "Cormorant Garamond";
+        font-style: italic;
+        font-size: clamp(1.25rem, 2.8vw, 1.55rem);
+        color: var(--bark-soft);
+        line-height: 1.55;
+        max-width: 460px;
+        margin: 0 auto;
+      }
+      .reg-btn {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 1.05rem 2.6rem;
+        background: var(--gold);
+        color: #fff;
+        font-family: "Jost";
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background 0.4s,
+          letter-spacing 0.4s;
+      }
+      .reg-btn:hover {
+        background: var(--rose);
+        letter-spacing: 0.26em;
+      }
+
+      /* music toggle */
+      .music-btn {
+        position: fixed;
+        right: 1.4rem;
+        bottom: 1.4rem;
+        z-index: 40;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1px solid var(--gold-soft);
+        background: var(--bark);
+        color: var(--gold-soft);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+        transition:
+          transform 0.4s,
+          background 0.4s;
+      }
+      .music-btn:hover {
+        transform: scale(1.08);
+        background: var(--sage);
+      }
+      .music-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+      .music-btn .bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 18px;
+      }
+      .music-btn .bars i {
+        width: 3px;
+        background: currentColor;
+        height: 6px;
+        border-radius: 1px;
+        animation: eq 0.9s ease-in-out infinite;
+      }
+      .music-btn .bars i:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .music-btn .bars i:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .music-btn.paused .bars i {
+        animation-play-state: paused;
+        height: 6px;
+      }
+      @keyframes eq {
+        0%,
+        100% {
+          height: 5px;
+        }
+        50% {
+          height: 17px;
+        }
       }
 
       /* horizontal gallery */
@@ -719,7 +859,6 @@
           display: none;
         }
         .hero-inner,
-        .scroll-cue,
         nav {
           opacity: 1;
           transform: none;
@@ -736,11 +875,12 @@
   </head>
   <body>
     <!-- INTRO CURTAIN -->
-    <div id="intro">
+    <div id="intro" role="button" tabindex="0" aria-label="Open invitation">
       <div class="intro-inner">
         <div class="amp">&amp;</div>
         <div class="intro-names">REUBEN &nbsp;&amp;&nbsp; NIMISHA</div>
         <div class="intro-sub">ARE GETTING MARRIED</div>
+        <div class="intro-tap">TAP TO OPEN</div>
       </div>
     </div>
 
@@ -769,7 +909,6 @@
         </h1>
         <p class="date">Monday, the fourth of January · 2027</p>
       </div>
-      <div class="scroll-cue"><span>SCROLL</span><i></i></div>
     </header>
 
     <!-- COUNTDOWN -->
@@ -822,12 +961,26 @@
               St. Osio's Orthodox Church<br />Naranganam West<br />Pathanamthitta
               Dist.
             </p>
+            <a
+              class="dirlink"
+              href="https://maps.app.goo.gl/QScDcHk1A9V9NMFY7"
+              target="_blank"
+              rel="noopener"
+              >Directions</a
+            >
           </div>
           <div class="card reveal d1">
             <div class="ico">ii</div>
             <h3>Reception</h3>
             <p class="when">1:00 in the afternoon onwards</p>
             <p>St. Thomas Marthoma<br />Church Auditorium<br />Kozhencherry</p>
+            <a
+              class="dirlink"
+              href="https://maps.app.goo.gl/Vq7NUoTA8rD5fFkK6"
+              target="_blank"
+              rel="noopener"
+              >Directions</a
+            >
           </div>
           <div class="card reveal d2">
             <div class="ico">iii</div>
@@ -891,20 +1044,133 @@
       </blockquote>
     </section>
 
+    <!-- GIFT REGISTRY -->
+    <section class="registry">
+      <div class="wrap reveal">
+        <div class="reg-card">
+          <div class="ico">&amp;</div>
+          <p class="lbl">With Grateful Hearts</p>
+          <h2>Your presence is the gift</h2>
+          <p class="reg-note">
+            Having you beside us on our wedding day is more than we could ask
+            for. Yet if you wish to bless the beginning of our life together,
+            you are warmly welcome to here.
+          </p>
+          <a
+            class="reg-btn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            >Bless the couple</a
+          >
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="script">Reuben &amp; Nimisha</div>
       <div class="names">04 · 01 · 2027</div>
       <div class="meta">WITH LOVE &amp; GRATITUDE</div>
     </footer>
 
+    <!-- MUSIC -->
+    <audio id="bgm" loop preload="auto">
+      <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+    <button
+      class="music-btn paused"
+      id="musicBtn"
+      aria-label="Play music"
+      title="Play music"
+    >
+      <span class="bars" id="musicBars" hidden><i></i><i></i><i></i></span>
+      <svg id="musicIcon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"
+        />
+      </svg>
+    </button>
+
+    <script>
+      /* background music */
+      const bgm = document.getElementById("bgm")
+      const musicBtn = document.getElementById("musicBtn")
+      const musicBars = document.getElementById("musicBars")
+      const musicIcon = document.getElementById("musicIcon")
+      bgm.volume = 0.55
+      function setMusicUI(playing) {
+        musicBtn.classList.toggle("paused", !playing)
+        musicBars.hidden = !playing
+        musicIcon.hidden = playing
+        musicBtn.setAttribute("aria-label", playing ? "Pause music" : "Play music")
+        musicBtn.setAttribute("title", playing ? "Pause music" : "Play music")
+      }
+      function toggleMusic() {
+        if (bgm.paused) {
+          bgm.play().then(() => setMusicUI(true)).catch(() => {})
+        } else {
+          bgm.pause()
+          setMusicUI(false)
+        }
+      }
+      musicBtn.addEventListener("click", toggleMusic)
+      // always start the song from the beginning on load / refresh
+      function playFromStart() {
+        try {
+          bgm.currentTime = 0
+        } catch (e) {}
+        return bgm.play().then(() => setMusicUI(true))
+      }
+      // try autoplay; browsers block audible autoplay until the user
+      // interacts, so if blocked we start on the very first gesture of any kind
+      const kickEvents = [
+        "pointerdown",
+        "touchstart",
+        "mousedown",
+        "keydown",
+        "wheel",
+        "scroll",
+        "mousemove",
+      ]
+      function armKick() {
+        const kick = () => {
+          playFromStart().catch(() => {})
+          kickEvents.forEach((ev) => removeEventListener(ev, kick))
+        }
+        kickEvents.forEach((ev) =>
+          addEventListener(ev, kick, { passive: true })
+        )
+      }
+      playFromStart().catch(() => {
+        setMusicUI(false)
+        armKick()
+      })
+    </script>
+
     <script>
       /* intro */
       const intro = document.getElementById("intro")
-      setTimeout(() => intro.classList.add("gone"), 100) // triggers CSS delayed transition
-      // safety: ensure removed from tab flow
-      setTimeout(() => {
-        intro.style.display = "none"
-      }, 4200)
+      // the intro waits for a tap: that tap is the user gesture browsers
+      // require before audio may play, so music starts the moment the site opens
+      function openSite() {
+        if (document.body.classList.contains("opened")) return
+        document.body.classList.add("opened")
+        if (bgm.paused) playFromStart().catch(() => {})
+        intro.classList.add("gone")
+        startPetals()
+        // safety: ensure removed from tab flow
+        setTimeout(() => {
+          intro.style.display = "none"
+        }, 1300)
+      }
+      intro.addEventListener("click", openSite)
+      intro.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") openSite()
+      })
+      // reduced-motion users never see the intro; reveal the site directly
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.body.classList.add("opened")
+      }
 
       /* nav */
       const nav = document.getElementById("nav")
@@ -1007,7 +1273,8 @@
         layer.appendChild(p)
         setTimeout(() => p.remove(), dur * 1000)
       }
-      if (!reduce) {
+      function startPetals() {
+        if (reduce) return
         const petalTimer = setInterval(spawn, 250)
         for (let i = 0; i < 6; i++) setTimeout(spawn, i * 150)
         setTimeout(() => clearInterval(petalTimer), 8000) // stop new petals after 8s; existing ones finish falling and fade out
