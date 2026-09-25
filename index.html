@@ -60,6 +60,11 @@
       }
 
       /* ============ INTRO CURTAIN ============ */
+      /* no scrolling behind the intro until it has been tapped open */
+      body:not(.opened) {
+        overflow: hidden;
+        height: 100vh;
+      }
       #intro {
         position: fixed;
         inset: 0;
@@ -70,6 +75,8 @@
         justify-content: center;
         text-align: center;
         cursor: pointer;
+        touch-action: none;
+        overscroll-behavior: contain;
         transition:
           opacity 1.1s ease,
           visibility 0s 1.1s;
@@ -907,7 +914,7 @@
           <span class="amp">&amp;</span>
           <span class="n">Nimisha</span>
         </h1>
-        <p class="date">Monday, the fourth of January · 2027</p>
+        <p class="date">Monday, the Fourth of January · 2027</p>
       </div>
     </header>
 
@@ -938,8 +945,13 @@
           <p class="lede" style="margin-top: 1.4rem">
             DATA NEEDED DATATATATATATATA.
           </p>
-          <p>Im in search of data.</p>
-          <p>Hello World find data.</p>
+          <p>We were connected through a mutual friend, started talking, and somehow just never stopped.
+          We were young, still figuring out life, but it didn’t take long to realize that we wanted a lot of the same things. What started so simply became something neither of us could have imagined at the time.
+         Since then, we’ve gone through so many versions of life together. We’ve grown, changed, figured some things out and definitely still figuring out the rest. But through it all, being together has always felt like the easy part.
+        And after all this time, there still hasn’t been a single day we haven’t talked.
+        It’s pretty special to look back at where we started and realize that somewhere along the way, we found our person.
+          We can’t wait to celebrate what comes next with all of you.</p>
+          
           <div class="divider"></div>
         </div>
       </div>
@@ -1056,11 +1068,7 @@
             for. Yet if you wish to bless the beginning of our life together,
             you are warmly welcome to here.
           </p>
-          <a
-            class="reg-btn"
-            href="#"
-            target="_blank"
-            rel="noopener"
+          <a class="reg-btn" href="#" target="_blank" rel="noopener"
             >Bless the couple</a
           >
         </div>
@@ -1085,9 +1093,7 @@
     >
       <span class="bars" id="musicBars" hidden><i></i><i></i><i></i></span>
       <svg id="musicIcon" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"
-        />
+        <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" />
       </svg>
     </button>
 
@@ -1102,12 +1108,18 @@
         musicBtn.classList.toggle("paused", !playing)
         musicBars.hidden = !playing
         musicIcon.hidden = playing
-        musicBtn.setAttribute("aria-label", playing ? "Pause music" : "Play music")
+        musicBtn.setAttribute(
+          "aria-label",
+          playing ? "Pause music" : "Play music",
+        )
         musicBtn.setAttribute("title", playing ? "Pause music" : "Play music")
       }
       function toggleMusic() {
         if (bgm.paused) {
-          bgm.play().then(() => setMusicUI(true)).catch(() => {})
+          bgm
+            .play()
+            .then(() => setMusicUI(true))
+            .catch(() => {})
         } else {
           bgm.pause()
           setMusicUI(false)
@@ -1138,7 +1150,7 @@
           kickEvents.forEach((ev) => removeEventListener(ev, kick))
         }
         kickEvents.forEach((ev) =>
-          addEventListener(ev, kick, { passive: true })
+          addEventListener(ev, kick, { passive: true }),
         )
       }
       playFromStart().catch(() => {
@@ -1219,7 +1231,8 @@
       parallax()
 
       /* countdown */
-      const target = new Date("2027-01-04T11:00:00").getTime()
+      // wedding time in IST (UTC+5:30), fixed regardless of the viewer's timezone
+      const target = new Date("2027-01-04T11:00:00+05:30").getTime()
       const dE = document.getElementById("d"),
         hE = document.getElementById("h"),
         mE = document.getElementById("m"),
