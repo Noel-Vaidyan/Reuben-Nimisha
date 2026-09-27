@@ -575,6 +575,96 @@
         letter-spacing: 0.26em;
       }
 
+      /* contact */
+      .contact {
+        background: var(--sage);
+        color: var(--cream);
+        text-align: center;
+      }
+      .contact .lbl {
+        color: var(--gold-soft);
+      }
+      .contact h2 {
+        color: var(--cream);
+        margin-bottom: 0.4rem;
+      }
+      .contact .lede {
+        color: var(--gold-soft);
+        margin-bottom: 2.4rem;
+      }
+      .bubbles {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .bubble {
+        background: rgba(63, 74, 56, 0.4);
+        border-radius: 18px 18px 18px 5px;
+        padding: 0.95rem 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        text-align: left;
+      }
+      .bubble .av {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold-soft);
+        color: var(--bark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+      .bubble .who .nm {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.2rem;
+        line-height: 1.1;
+      }
+      .bubble .who .nu {
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        color: var(--gold-soft);
+      }
+      .bubble .go {
+        margin-left: auto;
+        display: flex;
+        gap: 0.6rem;
+      }
+      .bubble .go a {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid rgba(196, 203, 180, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cream);
+        transition:
+          background 0.3s,
+          color 0.3s,
+          border-color 0.3s;
+      }
+      .bubble .go a:hover {
+        background: var(--gold-soft);
+        color: var(--bark);
+        border-color: var(--gold-soft);
+      }
+      .bubble .go svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
       /* music toggle */
       .music-btn {
         position: fixed;
@@ -912,6 +1002,7 @@
       <a href="#story">Story</a>
       <a href="#details">Details</a>
       <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </nav>
 
     <!-- HERO -->
@@ -1107,6 +1198,49 @@
           <a class="reg-btn" href="#" target="_blank" rel="noopener"
             >Bless the couple</a
           >
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <p class="lbl">Say Hello</p>
+        <h2>A message away</h2>
+        <p class="lede narrow">
+          For directions, stay, or anything at all — reach out any time.
+        </p>
+        <div class="bubbles">
+          <div class="bubble">
+            <div class="av">R</div>
+            <div class="who">
+              <div class="nm">Reuben</div>
+              <a class="nu" href="tel:+919000000000">+91 90000 00000</a>
+            </div>
+            <div class="go">
+              <a href="tel:+919000000000" aria-label="Call Reuben">
+                <svg viewBox="0 0 24 24"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5a2 2 0 0 1 2-2z"/></svg>
+              </a>
+              <a href="https://wa.me/919000000000" target="_blank" rel="noopener" aria-label="WhatsApp Reuben">
+                <svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M8.5 8.5c-.3 0-.6.1-.8.4-.3.3-.9.9-.9 2s.9 2.3 1 2.5c.1.2 1.7 2.8 4.3 3.8 2.1.8 2.6.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2l-1.9-.9c-.2-.1-.5-.1-.7.2l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.5-.7-2.3-1.7-.3-.4 0-.5.1-.7l.4-.6c.1-.2 0-.4 0-.5l-.8-1.8c-.2-.4-.4-.4-.6-.4z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="bubble">
+            <div class="av">S</div>
+            <div class="who">
+              <div class="nm">Soney Mathew John</div>
+              <a class="nu" href="tel:+919000000001">+91 90000 00001</a>
+            </div>
+            <div class="go">
+              <a href="tel:+919000000001" aria-label="Call Soney Mathew John">
+                <svg viewBox="0 0 24 24"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5a2 2 0 0 1 2-2z"/></svg>
+              </a>
+              <a href="https://wa.me/919000000001" target="_blank" rel="noopener" aria-label="WhatsApp Soney Mathew John">
+                <svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M8.5 8.5c-.3 0-.6.1-.8.4-.3.3-.9.9-.9 2s.9 2.3 1 2.5c.1.2 1.7 2.8 4.3 3.8 2.1.8 2.6.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2l-1.9-.9c-.2-.1-.5-.1-.7.2l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.5-.7-2.3-1.7-.3-.4 0-.5.1-.7l.4-.6c.1-.2 0-.4 0-.5l-.8-1.8c-.2-.4-.4-.4-.6-.4z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
