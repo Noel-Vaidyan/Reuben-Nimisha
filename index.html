@@ -737,46 +737,175 @@
         margin: 0 auto 2.6rem;
         text-align: center;
       }
-      .gal-track {
-        column-count: 3;
-        column-gap: 16px;
-        max-width: 1120px;
+      .gal-carousel {
+        position: relative;
+        max-width: 900px;
         margin: 0 auto;
         padding: 0 1.5rem;
       }
-      .gal-track figure {
+      .gal-stage {
         position: relative;
-        break-inside: avoid;
-        margin: 0 0 16px;
+        aspect-ratio: 3 / 2;
         overflow: hidden;
+        background: var(--cream-deep);
+        cursor: zoom-in;
       }
-      .gal-track img {
+      .gal-stage img {
+        position: absolute;
+        inset: 0;
         width: 100%;
-        height: auto;
-        display: block;
-        transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
-      }
-      .gal-track figure:hover img {
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
         transform: scale(1.04);
+        transition:
+          opacity 1s ease,
+          transform 6s ease;
       }
-      @media (max-width: 860px) {
-        .gal-track {
-          column-count: 2;
-          column-gap: 12px;
-        }
-        .gal-track figure {
-          margin-bottom: 12px;
-        }
+      .gal-stage img.on {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .gal-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(243, 239, 228, 0.82);
+        color: var(--bark);
+        font-size: 1.4rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.3s,
+          transform 0.3s;
+      }
+      .gal-arrow:hover {
+        background: var(--cream);
+        transform: translateY(-50%) scale(1.08);
+      }
+      .gal-arrow.prev {
+        left: 2rem;
+      }
+      .gal-arrow.next {
+        right: 2rem;
+      }
+      .gal-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 1.3rem;
+      }
+      .gal-dots button {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: var(--line);
+        cursor: pointer;
+        transition:
+          width 0.3s,
+          background 0.3s;
+      }
+      .gal-dots button.on {
+        width: 24px;
+        border-radius: 4px;
+        background: var(--gold);
       }
       .gal-hint {
         text-align: center;
         font-family: "Cormorant Garamond";
         font-style: italic;
         color: var(--bark-soft);
-        margin-top: 1.8rem;
+        margin-top: 1.4rem;
         font-size: 1rem;
       }
-
+      @media (max-width: 620px) {
+        .gal-arrow {
+          width: 38px;
+          height: 38px;
+          font-size: 1.2rem;
+        }
+        .gal-arrow.prev {
+          left: 1rem;
+        }
+        .gal-arrow.next {
+          right: 1rem;
+        }
+      }
+      /* lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(35, 42, 30, 0.94);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+      .lightbox.open {
+        display: flex;
+        opacity: 1;
+      }
+      .lightbox img {
+        max-width: 92vw;
+        max-height: 86vh;
+        object-fit: contain;
+        box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+      }
+      .lb-btn {
+        position: absolute;
+        background: none;
+        border: none;
+        color: #f3efe4;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lb-close {
+        top: 1.4rem;
+        right: 1.4rem;
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .lb-nav {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 56px;
+        font-size: 2.4rem;
+        opacity: 0.85;
+      }
+      .lb-nav:hover {
+        opacity: 1;
+      }
+      .lb-prev {
+        left: 1rem;
+      }
+      .lb-next {
+        right: 1rem;
+      }
+      .lb-count {
+        position: absolute;
+        bottom: 1.4rem;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: var(--gold-soft);
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+      }
       /* quote band parallax */
       .band {
         position: relative;
@@ -1141,31 +1270,31 @@
         <p class="lbl">MOMENTS</p>
         <h2>A little of us</h2>
       </div>
-      <div class="gal-track" id="galTrack">
-        <figure>
-          <img src="g1.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
-        <figure>
-          <img src="g2.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
-        <figure>
-          <img src="g3.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
-        <figure>
-          <img src="g4.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
-        <figure>
-          <img src="g5.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
-        <figure>
-          <img src="g6.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
-        <figure>
-          <img src="g7.jpg" loading="lazy" alt="Reuben and Nimisha" />
-        </figure>
+      <div class="gal-carousel reveal" id="galCarousel">
+        <div class="gal-stage" id="galStage">
+            <img src="g1.jpg" loading="lazy" alt="Reuben and Nimisha" class="on" />
+            <img src="g2.jpg" loading="lazy" alt="Reuben and Nimisha" />
+            <img src="g3.jpg" loading="lazy" alt="Reuben and Nimisha" />
+            <img src="g4.jpg" loading="lazy" alt="Reuben and Nimisha" />
+            <img src="g5.jpg" loading="lazy" alt="Reuben and Nimisha" />
+            <img src="g6.jpg" loading="lazy" alt="Reuben and Nimisha" />
+            <img src="g7.jpg" loading="lazy" alt="Reuben and Nimisha" />
+          <button class="gal-arrow prev" id="galPrev" aria-label="Previous photo">&#8249;</button>
+          <button class="gal-arrow next" id="galNext" aria-label="Next photo">&#8250;</button>
+        </div>
+        <div class="gal-dots" id="galDots"></div>
+        <p class="gal-hint">tap a photo to view full</p>
       </div>
-      <p class="gal-hint">— moments we love —</p>
     </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <img id="lbImg" src="" alt="Reuben and Nimisha" />
+      <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+      <button class="lb-btn lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+      <button class="lb-btn lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+      <div class="lb-count" id="lbCount"></div>
+    </div>
 
     <!-- QUOTE BAND -->
     <section class="band">
@@ -1460,6 +1589,139 @@
         for (let i = 0; i < 6; i++) setTimeout(spawn, i * 150)
         setTimeout(() => clearInterval(petalTimer), 8000) // stop new petals after 8s; existing ones finish falling and fade out
       }
+
+      /* gallery carousel + lightbox */
+      ;(function () {
+        const stage = document.getElementById("galStage")
+        if (!stage) return
+        const slides = [...stage.querySelectorAll("img")]
+        const dotsWrap = document.getElementById("galDots")
+        const srcs = slides.map((im) => im.getAttribute("src"))
+        let idx = 0
+        let timer = null
+        const DELAY = 4000
+
+        slides.forEach((_, i) => {
+          const b = document.createElement("button")
+          if (i === 0) b.className = "on"
+          b.setAttribute("aria-label", "Go to photo " + (i + 1))
+          b.addEventListener("click", () => {
+            show(i)
+            restart()
+          })
+          dotsWrap.appendChild(b)
+        })
+        const dots = [...dotsWrap.children]
+
+        function show(n) {
+          idx = (n + slides.length) % slides.length
+          slides.forEach((im, i) => im.classList.toggle("on", i === idx))
+          dots.forEach((d, i) => d.classList.toggle("on", i === idx))
+          if (lb.classList.contains("open")) setLb()
+        }
+        function next() {
+          show(idx + 1)
+        }
+        function prev() {
+          show(idx - 1)
+        }
+        function start() {
+          timer = setInterval(next, DELAY)
+        }
+        function stop() {
+          clearInterval(timer)
+        }
+        function restart() {
+          stop()
+          start()
+        }
+
+        document.getElementById("galNext").addEventListener("click", (e) => {
+          e.stopPropagation()
+          next()
+          restart()
+        })
+        document.getElementById("galPrev").addEventListener("click", (e) => {
+          e.stopPropagation()
+          prev()
+          restart()
+        })
+        stage.addEventListener("mouseenter", stop)
+        stage.addEventListener("mouseleave", start)
+
+        /* lightbox */
+        const lb = document.getElementById("lightbox")
+        const lbImg = document.getElementById("lbImg")
+        const lbCount = document.getElementById("lbCount")
+        function setLb() {
+          lbImg.src = srcs[idx]
+          lbCount.textContent = idx + 1 + " / " + slides.length
+        }
+        function openLb() {
+          setLb()
+          lb.classList.add("open")
+          lb.setAttribute("aria-hidden", "false")
+          stop()
+        }
+        function closeLb() {
+          lb.classList.remove("open")
+          lb.setAttribute("aria-hidden", "true")
+          start()
+        }
+        stage.addEventListener("click", openLb)
+        document.getElementById("lbClose").addEventListener("click", closeLb)
+        document.getElementById("lbNext").addEventListener("click", (e) => {
+          e.stopPropagation()
+          next()
+        })
+        document.getElementById("lbPrev").addEventListener("click", (e) => {
+          e.stopPropagation()
+          prev()
+        })
+        lb.addEventListener("click", (e) => {
+          if (e.target === lb) closeLb()
+        })
+        document.addEventListener("keydown", (e) => {
+          if (!lb.classList.contains("open")) return
+          if (e.key === "Escape") closeLb()
+          else if (e.key === "ArrowRight") next()
+          else if (e.key === "ArrowLeft") prev()
+        })
+
+        /* swipe (stage + lightbox) */
+        function swipe(el, onLeft, onRight) {
+          let x0 = null
+          el.addEventListener(
+            "touchstart",
+            (e) => (x0 = e.touches[0].clientX),
+            { passive: true },
+          )
+          el.addEventListener(
+            "touchend",
+            (e) => {
+              if (x0 === null) return
+              const dx = e.changedTouches[0].clientX - x0
+              if (Math.abs(dx) > 40) (dx < 0 ? onLeft : onRight)()
+              x0 = null
+            },
+            { passive: true },
+          )
+        }
+        swipe(
+          stage,
+          () => {
+            next()
+            restart()
+          },
+          () => {
+            prev()
+            restart()
+          },
+        )
+        swipe(lb, next, prev)
+
+        start()
+      })()
 
       /* rsvp */
     </script>
